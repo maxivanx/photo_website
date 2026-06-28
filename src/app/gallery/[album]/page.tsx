@@ -52,7 +52,7 @@ export default async function AlbumPage({ params }: Props) {
                 <img
                   src={imagePath(photo.image)}
                   alt={photo.title}
-                  className="w-full object-contain max-h-[80vh] mx-auto"
+                  className="w-full h-auto"
                   loading="lazy"
                 />
               </a>
