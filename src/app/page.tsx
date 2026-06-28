@@ -21,12 +21,6 @@ export default function Home() {
 
       {albums.length > 0 && (
         <section className="max-w-7xl mx-auto px-6 pb-24">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-xs tracking-[0.2em] text-zinc-400 uppercase">作品集</h2>
-            <Link href="/gallery" className="text-xs text-zinc-400 hover:text-black transition-colors">
-              查看全部 →
-            </Link>
-          </div>
           <div className="space-y-16">
             {albums.map((album, idx) => {
               const albumPhotos = getPhotosByAlbum(album.slug)
