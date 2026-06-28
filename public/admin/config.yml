@@ -1,0 +1,55 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "albums"
+    label: "相册"
+    label_singular: "相册"
+    folder: "content/albums"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "描述", name: "description", widget: "text" }
+      - { label: "封面图", name: "cover", widget: "image" }
+      - { label: "排序", name: "order", widget: "number", value_type: "int", default: 0 }
+      - { label: "布局模板", name: "template", widget: "select", options: ["masonry", "grid", "fullwidth", "carousel"], default: "masonry" }
+      - { label: "精选展示", name: "featured", widget: "boolean", default: false }
+
+  - name: "photos"
+    label: "照片"
+    label_singular: "照片"
+    folder: "content/photos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "拍摄日期", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "图片", name: "image", widget: "image" }
+      - { label: "缩略图", name: "thumbnail", widget: "image", required: false }
+      - { label: "所属相册", name: "album", widget: "relation", collection: "albums", search_fields: ["title"], value_field: "{{slug}}", display_fields: ["title"] }
+      - { label: "排序", name: "order", widget: "number", value_type: "int", default: 0 }
+      - { label: "宽度 (列数)", name: "width", widget: "select", options: [1, 2, 3], default: 1 }
+      - { label: "高度 (行数)", name: "height", widget: "select", options: [1, 2], default: 1 }
+      - { label: "精选展示", name: "featured", widget: "boolean", default: false }
+      - { label: "描述", name: "description", widget: "text", required: false }
+      - { label: "标签", name: "tags", widget: "list", default: [], required: false }
+      - { label: "相机", name: "camera", widget: "string", required: false }
+      - { label: "镜头", name: "lens", widget: "string", required: false }
+
+  - name: "blog"
+    label: "博客"
+    label_singular: "文章"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "发布日期", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "标签", name: "tags", widget: "list", default: [], required: false }
+      - { label: "封面图", name: "cover", widget: "image", required: false }
+      - { label: "正文", name: "body", widget: "markdown" }
