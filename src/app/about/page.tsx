@@ -1,45 +1,33 @@
+import Link from "next/link"
+
 export default function AboutPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold mb-8">关于我</h1>
+    <div className="max-w-3xl mx-auto px-5 py-16">
+      <h1 className="text-2xl font-light tracking-tight mb-2">About</h1>
+      <p className="text-sm text-zinc-400 mb-12">关于</p>
 
-      <div className="flex flex-col sm:flex-row gap-8 items-start mb-12">
-        <div className="w-48 h-48 rounded-full bg-zinc-200 dark:bg-zinc-800 flex-shrink-0 mx-auto sm:mx-0 flex items-center justify-center">
-          <span className="text-4xl text-zinc-400">📷</span>
-        </div>
-        <div className="space-y-4">
-          <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            一名热爱摄影的创作者，专注于风光、人像和街拍。我相信每一张照片都是一个故事，而相机就是讲述这些故事的工具。
-          </p>
-          <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            摄影让我学会了放慢脚步，用心观察身边的世界。无论是壮丽的自然景观，还是街头的平凡瞬间，都值得被记录和珍藏。
-          </p>
-        </div>
-      </div>
-
-      <div className="border-t border-zinc-200 dark:border-zinc-800 pt-8">
-        <h2 className="text-xl font-semibold mb-4">设备清单</h2>
-        <ul className="space-y-2 text-zinc-600 dark:text-zinc-400">
-          <li>• Sony A7IV 全画幅微单</li>
-          <li>• Sony FE 24-70mm f/2.8 GM II</li>
-          <li>• Sony FE 85mm f/1.4 GM</li>
-          <li>• Sony FE 70-200mm f/4 G OSS</li>
-          <li>• Sony FE 16-35mm f/2.8 GM</li>
-          <li>• DJI Mavic 3 Pro 无人机</li>
-        </ul>
-      </div>
-
-      <div className="border-t border-zinc-200 dark:border-zinc-800 pt-8 mt-8">
-        <h2 className="text-xl font-semibold mb-4">联系我</h2>
-        <p className="text-zinc-600 dark:text-zinc-400">
-          如有合作或约拍需求，欢迎通过以下方式联系我：
+      <div className="space-y-6 text-sm text-zinc-700 leading-relaxed">
+        <p>
+          一名热爱摄影的创作者，专注于风光、人像和街拍。
         </p>
-        <ul className="mt-4 space-y-2 text-zinc-600 dark:text-zinc-400">
-          <li>• 邮箱：photo@example.com</li>
-          <li>• Instagram：@photographer</li>
-          <li>• 微博：@摄影师</li>
+        <p>
+          摄影让我学会了放慢脚步，用心观察身边的世界。
+        </p>
+      </div>
+
+      <div className="mt-12 pt-8 border-t border-zinc-100">
+        <h2 className="text-xs tracking-widest text-zinc-400 uppercase mb-4">Equipment</h2>
+        <ul className="text-sm text-zinc-600 space-y-1.5">
+          <li>Sony A7IV</li>
+          <li>FE 24-70mm f/2.8 GM II</li>
+          <li>FE 85mm f/1.4 GM</li>
         </ul>
+      </div>
+
+      <div className="mt-8 pt-8 border-t border-zinc-100">
+        <h2 className="text-xs tracking-widest text-zinc-400 uppercase mb-4">Contact</h2>
+        <p className="text-sm text-zinc-500">photo@example.com</p>
       </div>
     </div>
-  );
+  )
 }

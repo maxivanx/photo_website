@@ -1,27 +1,37 @@
-import { getAllPosts } from "@/lib/blog";
+import Link from "next/link"
+import { getAllPosts } from "@/lib/blog"
 
 export default function BlogPage() {
-  const posts = getAllPosts();
+  const posts = getAllPosts()
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold mb-4">博客</h1>
-      <p className="text-zinc-600 dark:text-zinc-400 mb-8">
-        摄影技巧、拍摄故事与创作心得
-      </p>
+    <div className="max-w-3xl mx-auto px-5 py-16">
+      <h1 className="text-2xl font-light tracking-tight mb-2">Blog</h1>
+      <p className="text-sm text-zinc-400 mb-12">摄影笔记</p>
 
       {posts.length === 0 ? (
-        <div className="text-center py-24 border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-lg">
-          <p className="text-zinc-400 text-lg">暂无博客文章</p>
-          <p className="text-zinc-400 text-sm mt-2">在 content/blog/ 目录下添加文章</p>
+        <div className="text-center py-24">
+          <p className="text-sm text-zinc-300">No posts yet</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="space-y-6">
           {posts.map((post) => (
-            <div key={post.slug} />
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="block group border-b border-zinc-100 pb-6"
+            >
+              <time className="text-xs text-zinc-300">{post.date}</time>
+              <h2 className="text-base font-medium mt-1 group-hover:underline underline-offset-2">
+                {post.title}
+              </h2>
+              {post.excerpt && (
+                <p className="text-sm text-zinc-400 mt-2 leading-relaxed">{post.excerpt}</p>
+              )}
+            </Link>
           ))}
         </div>
       )}
     </div>
-  );
+  )
 }
