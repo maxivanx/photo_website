@@ -32,8 +32,10 @@ export default function GalleryPage() {
                     {photos.slice(0, 10).map((photo) => (
                       <div
                         key={photo.slug}
-                        className="w-28 h-20 flex-shrink-0 bg-zinc-100 group-hover:bg-zinc-200 transition-colors"
-                      />
+                        className="w-28 h-20 flex-shrink-0 bg-zinc-100 overflow-hidden"
+                      >
+                        <img src={photo.image} alt={photo.title} className="w-full h-full object-cover group-hover:opacity-80 transition-opacity" />
+                      </div>
                     ))}
                     {photos.length > 10 && (
                       <div className="w-28 h-20 flex-shrink-0 bg-zinc-50 flex items-center justify-center text-[11px] text-zinc-300">

@@ -45,15 +45,14 @@ export default async function AlbumPage({ params }: Props) {
               href={photo.image}
               target="_blank"
               rel="noopener noreferrer"
-              className="aspect-square bg-zinc-100 hover:bg-zinc-200 transition-colors block relative overflow-hidden"
+              className="aspect-square bg-zinc-100 hover:opacity-90 transition-opacity block overflow-hidden"
             >
-              {photo.thumbnail && (
-                <img
-                  src={photo.thumbnail}
-                  alt={photo.title}
-                  className="w-full h-full object-cover"
-                />
-              )}
+              <img
+                src={photo.image}
+                alt={photo.title}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
             </a>
           ))}
         </div>

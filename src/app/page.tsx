@@ -35,8 +35,10 @@ export default function Home() {
                       {albumPhotos.slice(0, 8).map((photo) => (
                         <div
                           key={photo.slug}
-                          className="w-24 h-16 flex-shrink-0 bg-zinc-100"
-                        />
+                          className="w-24 h-16 flex-shrink-0 bg-zinc-100 overflow-hidden"
+                        >
+                          <img src={photo.image} alt={photo.title} className="w-full h-full object-cover group-hover:opacity-80 transition-opacity" />
+                        </div>
                       ))}
                     </div>
                   ) : (
