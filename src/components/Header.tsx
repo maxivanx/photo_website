@@ -1,41 +1,66 @@
 'use client'
 
 import Link from 'next/link'
+import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 
-const nav = [
-  { href: '/gallery', label: '作品集' },
-  { href: '/blog', label: '博客' },
-  { href: '/about', label: '关于' },
-]
-
 export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-zinc-100">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link
-          href="/"
-          className="text-sm font-semibold tracking-[0.2em] uppercase"
-        >
-          Photo
+    <header>
+      <div className="text-center py-8 sm:py-10">
+        <Link href="/" className="inline-block">
+          <h1 className="text-4xl sm:text-5xl font-serif tracking-wide text-[#e8e8e8]">
+            PHOTO
+          </h1>
         </Link>
-        <nav className="flex items-center gap-8">
-          {nav.map(({ href, label }) => (
+      </div>
+
+      <div className="bg-[#2a2a2a] border-y border-[#3a3a3a]">
+        <div className="max-w-6xl mx-auto px-4">
+          <button
+            className="w-full py-3 text-xs tracking-[0.15em] text-[#a0a0a0] uppercase md:hidden"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? 'Close' : 'Menu'}
+          </button>
+          <nav className={`${menuOpen ? 'block' : 'hidden'} md:flex md:items-center md:justify-center md:gap-1 py-2`}>
             <Link
-              key={href}
-              href={href}
-              className={`text-xs tracking-widest uppercase transition-colors ${
-                pathname.startsWith(href)
-                  ? 'text-black'
-                  : 'text-zinc-400 hover:text-black'
+              href="/"
+              className={`block md:inline-block px-4 py-2 text-xs tracking-[0.15em] uppercase ${
+                pathname === '/' ? 'text-[#e8e8e8]' : 'text-[#a0a0a0] hover:text-[#e8e8e8]'
               }`}
             >
-              {label}
+              Home
             </Link>
-          ))}
-        </nav>
+            <Link
+              href="/gallery"
+              className={`block md:inline-block px-4 py-2 text-xs tracking-[0.15em] uppercase ${
+                pathname.startsWith('/gallery') ? 'text-[#e8e8e8]' : 'text-[#a0a0a0] hover:text-[#e8e8e8]'
+              }`}
+            >
+              Portfolios
+            </Link>
+            <Link
+              href="/blog"
+              className={`block md:inline-block px-4 py-2 text-xs tracking-[0.15em] uppercase ${
+                pathname.startsWith('/blog') ? 'text-[#e8e8e8]' : 'text-[#a0a0a0] hover:text-[#e8e8e8]'
+              }`}
+            >
+              Blog
+            </Link>
+            <Link
+              href="/about"
+              className={`block md:inline-block px-4 py-2 text-xs tracking-[0.15em] uppercase ${
+                pathname === '/about' ? 'text-[#e8e8e8]' : 'text-[#a0a0a0] hover:text-[#e8e8e8]'
+              }`}
+            >
+              About
+            </Link>
+          </nav>
+        </div>
       </div>
     </header>
   )

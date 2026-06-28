@@ -1,61 +1,29 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #111111;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
 * {
   box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), sans-serif;
+  background: #1a1a1a;
+  color: #e8e8e8;
+  font-family: Georgia, "Times New Roman", Times, serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background: #111;
-  color: #fff;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-@keyframes imageReveal {
-  from { opacity: 0; clip-path: inset(0 0 100% 0); }
-  to { opacity: 1; clip-path: inset(0 0 0 0); }
-}
-
-.image-reveal {
-  animation: imageReveal 0.6s ease-out forwards;
+  background: #e8e8e8;
+  color: #1a1a1a;
 }
 
 img {
   transition: opacity 0.3s ease;
 }
 
-img[loading] {
-  opacity: 0;
+a {
+  transition: opacity 0.2s ease;
 }
 
-img[loading].loaded,
-img:not([loading]) {
-  opacity: 1;
+a:hover {
+  opacity: 0.75;
 }

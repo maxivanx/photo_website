@@ -1,12 +1,11 @@
-import Link from "next/link"
-
 export default function AboutPage() {
   return (
-    <div className="max-w-3xl mx-auto px-5 py-16">
-      <h1 className="text-2xl font-light tracking-tight mb-2">About</h1>
-      <p className="text-sm text-zinc-400 mb-12">关于</p>
+    <div className="max-w-3xl mx-auto px-4 py-12">
+      <h1 className="text-2xl font-serif tracking-wide mb-10 text-center">
+        About
+      </h1>
 
-      <div className="space-y-6 text-sm text-zinc-700 leading-relaxed">
+      <div className="space-y-6 text-sm text-[#a0a0a0] leading-relaxed">
         <p>
           一名热爱摄影的创作者，专注于风光、人像和街拍。
         </p>
@@ -15,18 +14,18 @@ export default function AboutPage() {
         </p>
       </div>
 
-      <div className="mt-12 pt-8 border-t border-zinc-100">
-        <h2 className="text-xs tracking-widest text-zinc-400 uppercase mb-4">Equipment</h2>
-        <ul className="text-sm text-zinc-600 space-y-1.5">
+      <div className="mt-16 pt-10 border-t border-[#3a3a3a]">
+        <h2 className="text-sm font-serif tracking-wide text-[#e8e8e8] mb-6">Equipment</h2>
+        <ul className="space-y-2 text-sm text-[#888]">
           <li>Sony A7IV</li>
           <li>FE 24-70mm f/2.8 GM II</li>
           <li>FE 85mm f/1.4 GM</li>
         </ul>
       </div>
 
-      <div className="mt-8 pt-8 border-t border-zinc-100">
-        <h2 className="text-xs tracking-widest text-zinc-400 uppercase mb-4">Contact</h2>
-        <p className="text-sm text-zinc-500">photo@example.com</p>
+      <div className="mt-10 pt-10 border-t border-[#3a3a3a]">
+        <h2 className="text-sm font-serif tracking-wide text-[#e8e8e8] mb-6">Contact</h2>
+        <p className="text-sm text-[#888]">photo@example.com</p>
       </div>
     </div>
   )
