@@ -2,6 +2,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { getAlbumBySlug, getAllAlbums } from "@/lib/albums"
 import { getPhotosByAlbum } from "@/lib/photos"
+import { imagePath } from "@/lib/config"
 
 export function generateStaticParams() {
   const albums = getAllAlbums()
@@ -42,13 +43,13 @@ export default async function AlbumPage({ params }: Props) {
           {photos.map((photo) => (
             <a
               key={photo.slug}
-              href={photo.image}
+              href={imagePath(photo.image)}
               target="_blank"
               rel="noopener noreferrer"
               className="aspect-square bg-zinc-100 hover:opacity-90 transition-opacity block overflow-hidden"
             >
               <img
-                src={photo.image}
+                src={imagePath(photo.image)}
                 alt={photo.title}
                 className="w-full h-full object-cover"
                 loading="lazy"

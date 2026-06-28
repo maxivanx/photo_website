@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { getAllAlbums } from "@/lib/albums"
 import { getPhotosByAlbum } from "@/lib/photos"
+import { imagePath } from "@/lib/config"
 
 export default function GalleryPage() {
   const albums = getAllAlbums()
@@ -34,7 +35,7 @@ export default function GalleryPage() {
                         key={photo.slug}
                         className="w-28 h-20 flex-shrink-0 bg-zinc-100 overflow-hidden"
                       >
-                        <img src={photo.image} alt={photo.title} className="w-full h-full object-cover group-hover:opacity-80 transition-opacity" />
+                        <img src={imagePath(photo.image)} alt={photo.title} className="w-full h-full object-cover group-hover:opacity-80 transition-opacity" />
                       </div>
                     ))}
                     {photos.length > 10 && (
