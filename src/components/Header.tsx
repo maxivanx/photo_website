@@ -1,24 +1,36 @@
+'use client'
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const nav = [
-  { href: '/gallery', label: 'Gallery' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/about', label: 'About' },
+  { href: '/gallery', label: '作品集' },
+  { href: '/blog', label: '博客' },
+  { href: '/about', label: '关于' },
 ]
 
 export default function Header() {
+  const pathname = usePathname()
+
   return (
-    <header className="border-b border-zinc-200">
-      <div className="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
-        <Link href="/" className="text-sm font-medium tracking-widest uppercase">
-          PHOTO
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-zinc-100">
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <Link
+          href="/"
+          className="text-sm font-semibold tracking-[0.2em] uppercase"
+        >
+          Photo
         </Link>
-        <nav className="flex items-center gap-6">
+        <nav className="flex items-center gap-8">
           {nav.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
-              className="text-xs tracking-wider text-zinc-500 hover:text-black transition-colors uppercase"
+              className={`text-xs tracking-widest uppercase transition-colors ${
+                pathname.startsWith(href)
+                  ? 'text-black'
+                  : 'text-zinc-400 hover:text-black'
+              }`}
             >
               {label}
             </Link>

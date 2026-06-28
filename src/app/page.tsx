@@ -9,42 +9,53 @@ export default function Home() {
   const posts = getAllPosts()
 
   return (
-    <div className="max-w-5xl mx-auto px-5 py-16">
-      <div className="mb-20">
-        <h1 className="text-3xl font-light tracking-tight">Photo</h1>
-        <p className="mt-3 text-sm text-zinc-400 max-w-md leading-relaxed">
-          通过镜头记录世界，用影像讲述故事
+    <div>
+      <section className="max-w-7xl mx-auto px-6 py-24 sm:py-32">
+        <h1 className="text-5xl sm:text-7xl font-light tracking-tight leading-none">
+          Photo
+        </h1>
+        <p className="mt-6 text-base text-zinc-400 max-w-md leading-relaxed">
+          用镜头记录世界，用影像讲述故事
         </p>
-      </div>
+      </section>
 
       {albums.length > 0 && (
-        <section className="mb-20">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xs tracking-widest text-zinc-400 uppercase">Albums</h2>
+        <section className="max-w-7xl mx-auto px-6 pb-24">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-xs tracking-[0.2em] text-zinc-400 uppercase">作品集</h2>
             <Link href="/gallery" className="text-xs text-zinc-400 hover:text-black transition-colors">
-              View all →
+              查看全部 →
             </Link>
           </div>
-          <div className="space-y-10">
-            {albums.slice(0, 3).map((album) => {
+          <div className="space-y-16">
+            {albums.map((album, idx) => {
               const albumPhotos = getPhotosByAlbum(album.slug)
+              const previews = albumPhotos.slice(0, 4)
               return (
-                <Link key={album.slug} href={`/gallery/${album.slug}`} className="group block">
-                  <h3 className="text-sm font-medium mb-3">{album.title}</h3>
-                  {albumPhotos.length > 0 ? (
-                    <div className="flex gap-1 overflow-x-auto pb-2">
-                      {albumPhotos.slice(0, 8).map((photo) => (
-                        <div
-                          key={photo.slug}
-                          className="w-24 h-16 flex-shrink-0 bg-zinc-100 overflow-hidden"
-                        >
-                          <img src={imagePath(photo.image)} alt={photo.title} className="w-full h-full object-cover group-hover:opacity-80 transition-opacity" />
+                <Link
+                  key={album.slug}
+                  href={`/gallery/${album.slug}`}
+                  className="group block"
+                >
+                  <h3 className="text-lg font-medium mb-4 group-hover:opacity-60 transition-opacity">
+                    {album.title}
+                  </h3>
+                  {previews.length > 0 ? (
+                    <div className={`grid gap-1 ${previews.length === 1 ? 'grid-cols-1' : previews.length === 2 ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-4'}`}>
+                      {previews.map((photo) => (
+                        <div key={photo.slug} className="aspect-[4/3] bg-zinc-50 overflow-hidden">
+                          <img
+                            src={imagePath(photo.image)}
+                            alt={photo.title}
+                            className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
+                            loading={idx < 2 ? "eager" : "lazy"}
+                          />
                         </div>
                       ))}
                     </div>
                   ) : (
-                    <div className="h-16 bg-zinc-50 flex items-center justify-center">
-                      <span className="text-[11px] text-zinc-300">No photos</span>
+                    <div className="aspect-[4/3] bg-zinc-50 flex items-center justify-center">
+                      <span className="text-xs text-zinc-300">暂无照片</span>
                     </div>
                   )}
                 </Link>
@@ -55,20 +66,21 @@ export default function Home() {
       )}
 
       {posts.length > 0 && (
-        <section>
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xs tracking-widest text-zinc-400 uppercase">Blog</h2>
+        <section className="max-w-7xl mx-auto px-6 pb-24">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-xs tracking-[0.2em] text-zinc-400 uppercase">博客</h2>
             <Link href="/blog" className="text-xs text-zinc-400 hover:text-black transition-colors">
-              View all →
+              查看全部 →
             </Link>
           </div>
-          <div className="space-y-4">
-            {posts.slice(0, 4).map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`} className="block group">
-                <div className="flex items-center gap-4">
-                  <time className="text-xs text-zinc-300 w-20 flex-shrink-0">{post.date}</time>
-                  <h3 className="text-sm group-hover:underline underline-offset-2">{post.title}</h3>
-                </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {posts.slice(0, 6).map((post) => (
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
+                <div className="aspect-[16/10] bg-zinc-50 mb-4" />
+                <time className="text-xs text-zinc-300">{post.date}</time>
+                <h3 className="text-sm font-medium mt-1.5 group-hover:opacity-60 transition-opacity">
+                  {post.title}
+                </h3>
               </Link>
             ))}
           </div>

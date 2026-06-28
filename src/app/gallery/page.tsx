@@ -7,46 +7,52 @@ export default function GalleryPage() {
   const albums = getAllAlbums()
 
   return (
-    <div className="max-w-5xl mx-auto px-5 py-16">
-      <h1 className="text-2xl font-light tracking-tight mb-2">Gallery</h1>
-      <p className="text-sm text-zinc-400 mb-12">摄影作品</p>
+    <div className="max-w-7xl mx-auto px-6 py-24">
+      <h1 className="text-4xl font-light tracking-tight mb-2">作品集</h1>
+      <p className="text-sm text-zinc-400 mb-16">摄影作品</p>
 
       {albums.length === 0 ? (
-        <div className="text-center py-24">
-          <p className="text-sm text-zinc-300">No albums yet</p>
+        <div className="text-center py-32">
+          <p className="text-sm text-zinc-300">暂无相册</p>
         </div>
       ) : (
-        <div className="space-y-14">
+        <div className="space-y-24">
           {albums.map((album) => {
             const photos = getPhotosByAlbum(album.slug)
             return (
               <section key={album.slug}>
-                <div className="flex items-baseline gap-3 mb-5">
-                  <h2 className="text-sm font-medium">{album.title}</h2>
-                  <span className="text-[11px] text-zinc-300">{photos.length} photos</span>
+                <div className="flex items-baseline gap-4 mb-6">
+                  <h2 className="text-lg font-medium">{album.title}</h2>
+                  <span className="text-xs text-zinc-300">{photos.length} 张</span>
                 </div>
-                {photos.length > 0 ? (
-                  <Link
-                    href={`/gallery/${album.slug}`}
-                    className="flex gap-1 overflow-x-auto pb-2 group"
-                  >
-                    {photos.slice(0, 10).map((photo) => (
-                      <div
-                        key={photo.slug}
-                        className="w-28 h-20 flex-shrink-0 bg-zinc-100 overflow-hidden"
-                      >
-                        <img src={imagePath(photo.image)} alt={photo.title} className="w-full h-full object-cover group-hover:opacity-80 transition-opacity" />
-                      </div>
-                    ))}
-                    {photos.length > 10 && (
-                      <div className="w-28 h-20 flex-shrink-0 bg-zinc-50 flex items-center justify-center text-[11px] text-zinc-300">
-                        +{photos.length - 10}
-                      </div>
-                    )}
-                  </Link>
-                ) : (
-                  <div className="h-20 bg-zinc-50 flex items-center justify-center">
-                    <span className="text-[11px] text-zinc-300">No photos</span>
+                <Link
+                  href={`/gallery/${album.slug}`}
+                  className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1 group"
+                >
+                  {photos.slice(0, 8).map((photo, idx) => (
+                    <div
+                      key={photo.slug}
+                      className={`aspect-square bg-zinc-50 overflow-hidden ${
+                        idx === 0 ? 'row-span-2 col-span-2' : ''
+                      }`}
+                    >
+                      <img
+                        src={imagePath(photo.image)}
+                        alt={photo.title}
+                        className="w-full h-full object-cover group-hover:opacity-90 transition-opacity duration-500"
+                        loading={idx < 4 ? "eager" : "lazy"}
+                      />
+                    </div>
+                  ))}
+                </Link>
+                {photos.length > 8 && (
+                  <div className="mt-4 text-right">
+                    <Link
+                      href={`/gallery/${album.slug}`}
+                      className="text-xs text-zinc-400 hover:text-black transition-colors"
+                    >
+                      查看全部 {photos.length} 张 →
+                    </Link>
                   </div>
                 )}
               </section>
