@@ -1,9 +1,7 @@
-import { getAllPosts, getAllTags } from "@/lib/blog";
-import BlogCard from "@/components/BlogCard";
+import { getAllPosts } from "@/lib/blog";
 
 export default function BlogPage() {
   const posts = getAllPosts();
-  const tags = getAllTags();
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-16">
@@ -12,28 +10,15 @@ export default function BlogPage() {
         摄影技巧、拍摄故事与创作心得
       </p>
 
-      {tags.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-12">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-sm px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      )}
-
       {posts.length === 0 ? (
-        <div className="text-center py-20 text-zinc-400">
-          <p className="text-lg">暂无博客文章</p>
-          <p className="text-sm mt-2">请通过后台管理添加文章</p>
+        <div className="text-center py-24 border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-lg">
+          <p className="text-zinc-400 text-lg">暂无博客文章</p>
+          <p className="text-zinc-400 text-sm mt-2">在 content/blog/ 目录下添加文章</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post) => (
-            <BlogCard key={post.slug} post={post} />
+            <div key={post.slug} />
           ))}
         </div>
       )}

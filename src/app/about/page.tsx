@@ -1,18 +1,11 @@
-import Image from "next/image";
-
 export default function AboutPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-16">
       <h1 className="text-3xl font-bold mb-8">关于我</h1>
 
       <div className="flex flex-col sm:flex-row gap-8 items-start mb-12">
-        <div className="relative w-48 h-48 rounded-full overflow-hidden bg-zinc-100 dark:bg-zinc-900 flex-shrink-0 mx-auto sm:mx-0">
-          <Image
-            src="https://picsum.photos/seed/avatar/400/400"
-            alt="Avatar"
-            fill
-            className="object-cover"
-          />
+        <div className="w-48 h-48 rounded-full bg-zinc-200 dark:bg-zinc-800 flex-shrink-0 mx-auto sm:mx-0 flex items-center justify-center">
+          <span className="text-4xl text-zinc-400">📷</span>
         </div>
         <div className="space-y-4">
           <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">

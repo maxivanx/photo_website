@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { getAllAlbums } from "@/lib/albums";
 
 export default function GalleryPage() {
@@ -13,9 +12,9 @@ export default function GalleryPage() {
       </p>
 
       {albums.length === 0 ? (
-        <div className="text-center py-20 text-zinc-400">
-          <p className="text-lg">暂无相册</p>
-          <p className="text-sm mt-2">请通过后台管理添加相册和照片</p>
+        <div className="text-center py-24 border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-lg">
+          <p className="text-zinc-400 text-lg">暂无相册</p>
+          <p className="text-zinc-400 text-sm mt-2">在 content/albums/ 目录下创建相册</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -26,20 +25,11 @@ export default function GalleryPage() {
               className="group block"
             >
               <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-zinc-100 dark:bg-zinc-900 mb-4">
-                <Image
-                  src={album.cover}
-                  alt={album.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                <div className="absolute inset-0 bg-zinc-200 dark:bg-zinc-800" />
               </div>
               <h2 className="text-lg font-semibold">{album.title}</h2>
               <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
                 {album.description}
-              </p>
-              <p className="text-xs text-zinc-400 mt-2 capitalize">
-                模板: {album.template}
               </p>
             </Link>
           ))}
